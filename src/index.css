@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos adicionales para mejorar la experiencia de scroll */
+.scroll-mt-20 {
+  scroll-margin-top: 5rem; /* Ajusta según la altura de tu header */
+}
+

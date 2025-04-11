@@ -43,7 +43,7 @@ src/
 # Clonar el repositorio
 git clone [url-del-repositorio]
 
-# Instalar dependencias
+# Instalar dependencias (yo use "pnpm" pero es lo mismo)
 npm install
 
 # Iniciar el servidor de desarrollo

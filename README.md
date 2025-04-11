@@ -23,14 +23,34 @@ Esta aplicación es una landing page moderna y responsiva para una start-up espe
 
 ## Estructura del Proyecto
 La aplicación sigue una arquitectura modular y escalable:
+
+```tree
 src/
-├── common/ # Componentes y utilidades comunes
-│ ├── components/ # Componentes reutilizables
-│ └── layout/ # Layouts de la aplicación
-├── domain/ # Componentes específicos del dominio
-│ ├── about/ # Sección Sobre Nosotros
-│ ├── services/ # Sección de Servicios
-│ ├── technologies/ # Sección de Tecnologías
-│ ├── clients/ # Sección de Clientes
-│ └── contact/ # Sección de Contacto
-└── assets/ # Recursos estáticos
+├── common/           # Componentes y utilidades comunes
+│   ├── components/   # Componentes reutilizables
+│   └── layout/       # Layouts de la aplicación
+├── domain/           # Componentes específicos del dominio
+│   ├── about/        # Sección Sobre Nosotros
+│   ├── services/     # Sección de Servicios
+│   ├── technologies/ # Sección de Tecnologías
+│   ├── clients/      # Sección de Clientes
+│   └── contact/      # Sección de Contacto
+└── assets/           # Recursos estáticos
+```
+
+## Instalación
+```bash
+# Clonar el repositorio
+git clone [url-del-repositorio]
+
+# Instalar dependencias
+npm install
+
+# Iniciar el servidor de desarrollo
+npm run dev
+```
+
+## Contribución
+Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los cambios que te gustaría hacer.
+
+## Licencia

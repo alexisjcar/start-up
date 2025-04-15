@@ -18,7 +18,7 @@ function Hero() {
 
       {/* Contenido */}
       <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-5xl font-bold mb-4">Tu Start-up de Desarrollo Web</h1>
+        <h1 className="text-5xl font-bold mb-4">Tecnologia a tu alcance</h1>
         <p className="text-xl mb-8">Soluciones tecnológicas a medida para tu negocio</p>
         <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
           Conoce más

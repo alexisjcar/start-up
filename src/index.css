@@ -2,12 +2,42 @@
 
 @tailwind utilities;
 
+:root {
+  --color-primary: #00FFFF;
+  --color-background: #051622;
+}
+
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-background);
+  color: #fff;
 }
 
 /* Estilos adicionales para mejorar la experiencia de scroll */
 .scroll-mt-20 {
   scroll-margin-top: 5rem; /* Ajusta según la altura de tu header */
+}
+
+/* Estilos para los títulos */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
 }
 

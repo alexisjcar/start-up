@@ -12,13 +12,13 @@ function App() {
     <div className="flex flex-col justify-center items-center">
       <Header />
       <Hero />
-      <div className="">
+      <main className="w-full space-y-2">
         <AboutUs />
         <Services />
         <Clients />
         <Tecnologies />
         <Contact />
-      </div>
+      </main>
       <Footer />
     </div>
   )

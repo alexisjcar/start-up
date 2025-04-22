@@ -52,7 +52,3 @@ npm install
 npm run dev
 ```
 
-## Contribución
-Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los cambios que te gustaría hacer.
-
-## Licencia

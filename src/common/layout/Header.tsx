@@ -44,19 +44,19 @@ const Header = () => {
 
           {/* Menú de navegación - escritorio */}
           <div className="hidden md:flex space-x-12">
-            <a href="#sobre-nosotros" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
+            <a href="#about" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
               Sobre Nosotros
             </a>
-            <a href="#servicios" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
+            <a href="#services" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
               Servicios
             </a>
-            <a href="#clientes" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
+            <a href="#clients" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
               Clientes
             </a>
-            <a href="#tecnologias" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
+            <a href="#technologies" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
               Tecnologías
             </a>
-            <a href="#contacto" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
+            <a href="#contact" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
               Contacto
             </a>
           </div>
@@ -103,35 +103,35 @@ const Header = () => {
         >
           <div className="container mx-auto px-4 py-2 flex flex-col space-y-4">
             <a
-              href="#sobre-nosotros"
+              href="#about"
               className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
               onClick={toggleMenu}
             >
               Sobre Nosotros
             </a>
             <a
-              href="#servicios"
+              href="#services"
               className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
               onClick={toggleMenu}
             >
               Servicios
             </a>
             <a
-              href="#clientes"
+              href="#clients"
               className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
               onClick={toggleMenu}
             >
               Clientes
             </a>
             <a
-              href="#tecnologias"
+              href="#technologies"
               className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
               onClick={toggleMenu}
             >
               Tecnologías
             </a>
             <a
-              href="#contacto"
+              href="#contact"
               className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
               onClick={toggleMenu}
             >

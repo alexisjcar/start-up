@@ -29,6 +29,8 @@ src/
 ├── common/           # Componentes y utilidades comunes
 │   ├── components/   # Componentes reutilizables
 │   └── layout/       # Layouts de la aplicación
+│   └── hooks/        # Custom hooks de la aplicación
+│   └── services/     # Llamadas a apis de la aplicación
 ├── domain/           # Componentes específicos del dominio
 │   ├── about/        # Sección Sobre Nosotros
 │   ├── services/     # Sección de Servicios

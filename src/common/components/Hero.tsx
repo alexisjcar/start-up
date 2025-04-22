@@ -1,30 +1,27 @@
-import backgroundImage from '../../assets/background.jpg'
+import backgroundImage from '../../assets/background9.webp'
 
-function Hero() {
+const Hero = () => {
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center">
-      {/* Fondo */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
+    <section className="relative w-full h-screen">
+      <div className="absolute inset-0">
+        <img
+          src={backgroundImage}
+          alt="Hero"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
-
-      {/* Contenido */}
-      <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-5xl font-bold mb-4">Tecnologia a tu alcance</h1>
-        <p className="text-xl mb-8">Soluciones tecnológicas a medida para tu negocio</p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-          Conoce más
-        </button>
+      <div className="relative h-full flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-6xl md:text-8xl font-bold text-[#00FFFF] mb-6 drop-shadow-[0_0_25px_rgba(0,255,255,0.3)]">
+            Tu web a medida
+          </h1>
+          <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            Transformando ideas en soluciones digitales innovadoras
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

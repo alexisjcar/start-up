@@ -1,18 +1,18 @@
-import Header from './common/layout/Header'
-import Footer from './common/layout/Footer'
-import Hero from './common/components/Hero'
-import AboutUs from './domain/about/AboutUs'
-import Services from './domain/offeredServices/Services'
-import Tecnologies from './domain/tecnologies/Tecnologies'
-import Clients from './domain/clients/Clients'
-import Contact from './domain/contact/Contact'
-
+import Header from './common/layout/Header';
+import Footer from './common/layout/Footer';
+import Hero from './common/components/Hero';
+import AboutUs from './domain/about/AboutUs';
+import Services from './domain/offeredServices/Services';
+import Tecnologies from './domain/tecnologies/Tecnologies';
+import Clients from './domain/clients/Clients';
+import Contact from './domain/contact/Contact';
+import WhatsAppButton from './common/components/WhatsAppButton';
 function App() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className='flex flex-col justify-center items-center'>
       <Header />
       <Hero />
-      <main className="w-full space-y-2">
+      <main className='w-full space-y-2'>
         <AboutUs />
         <Services />
         <Clients />
@@ -20,8 +20,9 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

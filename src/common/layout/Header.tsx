@@ -1,147 +1,132 @@
-import { useState, useEffect } from 'react'
-import useSmoothScroll from '../hooks/useSmoothScroll'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../components/ui/Button';
+import { Menu, X } from 'lucide-react';
+import { cn } from '../../lib/utils';
 
-const Header = () => {
-  useSmoothScroll()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+const navItems = [
+  { name: 'Sobre Nosotros', href: '#about' },
+  { name: 'Servicios', href: '#services' },
+  { name: 'Proceso', href: '#process' },
+  { name: 'Tecnologías', href: '#technologies' },
+  { name: 'Clientes', href: '#clients' },
+  { name: 'Contacto', href: '#contact' },
+];
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
-  const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className={`
-      fixed w-full top-0 z-50 
-      transition-all duration-300
-      ${isScrolled || isMenuOpen ? 'backdrop-blur-lg border-b border-[#00FFFF]/10' : 'bg-transparent'}
-    `}>
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled
+          ? 'bg-black/80 backdrop-blur-lg border-b border-primary/10 py-3'
+          : 'bg-transparent py-5'
+      )}
+    >
+      <div className='container mx-auto px-4'>
+        <div className='flex items-center justify-between'>
           {/* Logo */}
-          <h1 className="text-[#00FFFF] text-2xl font-bold">
-            <a href="#" onClick={scrollToTop} className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300">
-              STIGMA
-            </a>
-          </h1>
-
-          {/* Menú de navegación - escritorio */}
-          <div className="hidden md:flex space-x-12">
-            <a href="#about" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
-              Sobre Nosotros
-            </a>
-            <a href="#services" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
-              Servicios
-            </a>
-            <a href="#clients" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
-              Clientes
-            </a>
-            <a href="#technologies" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
-              Tecnologías
-            </a>
-            <a href="#contact" className="text-[#00FFFF] text-lg hover:text-[#00FFFF]/80 transition-colors">
-              Contacto
-            </a>
-          </div>
-
-          {/* Botón de menú hamburguesa - móvil */}
-          <button
-            className="md:hidden p-2 text-[#00FFFF] hover:text-white transition-colors duration-300"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
+          <Link
+            to='/'
+            className='text-primary text-3xl font-bold tracking-tighter relative group'
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.history.pushState({}, '', '/');
+            }}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            <span className='relative z-10'>STiGMA</span>
+            <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300' />
+          </Link>
+
+          {/* Navegación de escritorio */}
+          <nav className='hidden md:flex items-center space-x-8'>
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const id = item.href.replace('#', '');
+                  document
+                    .getElementById(id)
+                    ?.scrollIntoView({ behavior: 'smooth' });
+                  window.history.pushState({}, '', item.href);
+                }}
+                className='text-foreground hover:text-primary transition-colors duration-300 text-sm font-medium'
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Botón enlazado */}
+            <Link to='/cotizar'>
+              <Button variant='default' size='sm' className='ml-4'>
+                Cotizar Proyecto
+              </Button>
+            </Link>
+          </nav>
+
+          {/* Botón móvil */}
+          <button
+            className='md:hidden text-foreground hover:text-primary transition-colors'
+            onClick={() => setIsMenuOpen((o) => !o)}
+            aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Menú de navegación - móvil */}
+        {/* Menú móvil desplegable */}
         <div
-          className={`
-            md:hidden fixed left-0 right-0 top-[72px] 
-            ${isScrolled || isMenuOpen ? 'backdrop-blur-sm' : 'bg-black/20'}
-            transition-all duration-300 ease-in-out
-            ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
-          `}
+          className={cn(
+            'md:hidden fixed inset-x-0 top-[60px] bg-black/95 backdrop-blur-lg border-b border-primary/10 transition-all duration-300 ease-in-out',
+            isMenuOpen
+              ? 'opacity-100 translate-y-0 pointer-events-auto'
+              : 'opacity-0 -translate-y-4 pointer-events-none'
+          )}
         >
-          <div className="container mx-auto px-4 py-2 flex flex-col space-y-4">
-            <a
-              href="#about"
-              className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
-              onClick={toggleMenu}
-            >
-              Sobre Nosotros
-            </a>
-            <a
-              href="#services"
-              className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
-              onClick={toggleMenu}
-            >
-              Servicios
-            </a>
-            <a
-              href="#clients"
-              className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
-              onClick={toggleMenu}
-            >
-              Clientes
-            </a>
-            <a
-              href="#technologies"
-              className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
-              onClick={toggleMenu}
-            >
-              Tecnologías
-            </a>
-            <a
-              href="#contact"
-              className="text-[#00FFFF] hover:text-[#00FFFF]/80 transition-colors duration-300 px-4 py-2 text-lg"
-              onClick={toggleMenu}
-            >
-              Contacto
-            </a>
-          </div>
-        </div>
-      </nav>
-    </header>
-  )
-}
+          <nav className='container py-5 flex flex-col space-y-4'>
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const id = item.href.replace('#', '');
+                  document
+                    .getElementById(id)
+                    ?.scrollIntoView({ behavior: 'smooth' });
+                  window.history.pushState({}, '', item.href);
+                  setIsMenuOpen(false);
+                }}
+                className='text-foreground hover:text-primary transition-colors px-4 py-2 text-lg'
+              >
+                {item.name}
+              </Link>
+            ))}
 
-export default Header
+            <div className='pt-2 px-4'>
+              <Link to='/cotizar'>
+                <Button variant='default' className='w-full'>
+                  Cotizar Proyecto
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}

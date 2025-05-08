@@ -1,27 +1,130 @@
-const AboutUs = () => {
+'use client';
+
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { CheckCircle, Users, Lightbulb, Rocket } from 'lucide-react';
+
+export default function About() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
-    <section id="about" className="min-h-[90vh] md:min-h-[60vh] flex items-center justify-center bg-[#051622] scroll-mt-12">
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold mb-8 text-center text-[#00FFFF]">
-          Sobre Nosotros
-        </h2>
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xl text-gray-400 mb-8 leading-relaxed">
-            Somos una empresa comprometida con la excelencia y la innovación en el desarrollo web.
-            Nuestro equipo de expertos está dedicado a crear soluciones digitales que transforman ideas en realidad.
-          </p>
-          <div className="mt-12 p-8 border border-[#00FFFF]/20 hover:border-[#00FFFF] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.2)]">
-            <h3 className="text-2xl font-semibold mb-6 text-[#00FFFF]">
-              Nuestra Misión
-            </h3>
-            <p className="text-gray-400">
-              Impulsar el éxito de nuestros clientes a través de soluciones tecnológicas innovadoras y de alta calidad.
-            </p>
-          </div>
+    <section id='about' className='pt-2 pb-20 scroll-mt-20'>
+      <div className='container px-4 mx-auto'>
+        <motion.div
+          ref={ref}
+          initial='hidden'
+          animate={inView ? 'visible' : 'hidden'}
+          variants={containerVariants}
+          className='max-w-4xl mx-auto text-center mb-8'
+        >
+          <motion.span
+            variants={itemVariants}
+            className='inline-block px-3 py-1 text-xs font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full mb-4'
+          >
+            Sobre Nosotros
+          </motion.span>
+          <motion.h2
+            variants={itemVariants}
+            className='text-3xl md:text-4xl font-bold mb-6'
+          >
+            Somos más que una{' '}
+            <span className='text-primary'>software factory</span>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className='text-lg text-muted-foreground'
+          >
+            En STiGMA, combinamos tecnología de vanguardia con creatividad para
+            desarrollar soluciones digitales que transforman negocios. Nuestro
+            equipo de expertos está comprometido con la excelencia y la
+            innovación.
+          </motion.p>
+        </motion.div>
+
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {[
+            {
+              icon: <Users className='h-10 w-10' />,
+              title: 'Equipo Especializado',
+              description:
+                'Contamos con profesionales altamente calificados en diferentes áreas de la tecnología.',
+              points: [
+                'Desarrolladores Full-Stack',
+                'Diseñadores UX/UI',
+                'Especialistas en DevOps',
+                'Consultores de negocio',
+              ],
+            },
+            {
+              icon: <Lightbulb className='h-10 w-10' />,
+              title: 'Enfoque Innovador',
+              description:
+                'Aplicamos las últimas tendencias y tecnologías para crear soluciones innovadoras.',
+              points: [
+                'Metodologías ágiles',
+                'Arquitecturas modernas',
+                'Tecnologías emergentes',
+                'Mejora continua',
+              ],
+            },
+            {
+              icon: <Rocket className='h-10 w-10' />,
+              title: 'Resultados Comprobados',
+              description:
+                'Nuestros proyectos han ayudado a empresas a alcanzar sus objetivos de negocio.',
+              points: [
+                'Aumento de eficiencia',
+                'Reducción de costos',
+                'Mejora de experiencia',
+                'Escalabilidad',
+              ],
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              ref={ref}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className='bg-black/50 backdrop-blur-sm border border-teal-400 rounded-xl p-6 hover:border-primary/30 transition-all duration-300'
+            >
+              <div className='text-primary mb-4'>{item.icon}</div>
+              <h3 className='text-xl font-semibold mb-3'>{item.title}</h3>
+              <p className='text-muted-foreground mb-4'>{item.description}</p>
+              <ul className='space-y-2'>
+                {item.points.map((point, i) => (
+                  <li key={i} className='flex items-start'>
+                    <CheckCircle className='h-5 w-5 text-primary mr-2 shrink-0' />
+                    <span className='text-sm'>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutUs;
+}

@@ -1,47 +1,26 @@
-@import 'tailwindcss';
-
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary: #00ffff;
-  --color-background: #051622;
-}
+/* variables + estilos base */
+@layer base {
+  :root {
+    /* si tu predeterminado es “oscuro” pon aquí los valores oscuros */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --primary: 179 80% 45%;
+    /* …otros tokens */
+  }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--color-background);
-  color: #fff;
-}
+  html.light {
+    /* si permites tema claro, invierte aquí */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --primary: 179 100% 50%;
+  }
 
-/* Estilos adicionales para mejorar la experiencia de scroll */
-.scroll-mt-20 {
-  scroll-margin-top: 5rem; /* Ajusta según la altura de tu header */
-}
-
-/* Estilos para los títulos */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-primary);
-}
-
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  opacity: 0.5;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  opacity: 1;
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
 }
